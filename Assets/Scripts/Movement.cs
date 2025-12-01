@@ -32,8 +32,8 @@ public class Movement : MonoBehaviour
     {
         PlayerMove();
 
-        m_Camera.transform.Rotate(mouseMove.y * -1 * (0.5f + sensitivity) * 8 * Time.deltaTime, 0, 0);
-        transform.Rotate(0, mouseMove.x * (0.5f + sensitivity) * 8 * Time.deltaTime, 0);
+        m_Camera.transform.Rotate(mouseMove.y * -1 * (1.5f + sensitivity) * 8 * Time.deltaTime, 0, 0);
+        transform.Rotate(0, mouseMove.x * (1.5f + sensitivity) * 8 * Time.deltaTime, 0);
     }
 
     void OnMove(InputValue value)
