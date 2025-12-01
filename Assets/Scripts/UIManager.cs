@@ -68,6 +68,8 @@ public class UIManager : MonoBehaviour
 
         if (bookLocationRef != null) // add data to page
         {
+            bookLocationRef.SetActive(true);
+
             bookLocationRef.transform.Find("EvImage").gameObject.GetComponent<RawImage>().texture = evImage;
             bookLocationRef.transform.Find("EvName").gameObject.GetComponent<TextMeshProUGUI>().text = evName;
             bookLocationRef.transform.Find("EvNumber").gameObject.GetComponent<TextMeshProUGUI>().text = "#" + evNum.ToString();
