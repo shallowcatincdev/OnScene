@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour
     [SerializeField] LayerMask groundMask;
     [SerializeField] float groundCheckDistance = 0.2f;
     [SerializeField] Transform groundCheckPoint;
-
+    bool MovementLocked = false;
     bool sprinting = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,10 +30,14 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMove();
+        if (!MovementLocked)
+        {
+            PlayerMove();
 
-        m_Camera.transform.Rotate(mouseMove.y * -1 * (1.5f + sensitivity) * 8 * Time.deltaTime, 0, 0);
-        transform.Rotate(0, mouseMove.x * (1.5f + sensitivity) * 8 * Time.deltaTime, 0);
+            m_Camera.transform.Rotate(mouseMove.y * -1 * (1.5f + sensitivity) * 8 * Time.deltaTime, 0, 0);
+            transform.Rotate(0, mouseMove.x * (1.5f + sensitivity) * 8 * Time.deltaTime, 0);
+        }
+        
     }
 
     void OnMove(InputValue value)
@@ -89,6 +93,20 @@ public class Movement : MonoBehaviour
         rate *= (sprinting) ? 1.5f : 1f; // if we are sprinting multiply accel/decel rate
 
         rb.linearVelocity = Vector3.Lerp(currentVelocity, targetVelocity, rate * Time.deltaTime);
+    }
+
+    public void EnableUiMode()
+    {
+        MovementLocked = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void DisableUiMode()
+    {
+        MovementLocked = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
 }

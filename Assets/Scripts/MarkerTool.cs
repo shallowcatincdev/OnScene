@@ -7,7 +7,7 @@ public class MarkerTool : MonoBehaviour
     public float maxDist = 10;
     public void OnClick()
     {
-        if (!toolEnabled)
+        if (toolEnabled)
         {
             RaycastHit hit;
                 

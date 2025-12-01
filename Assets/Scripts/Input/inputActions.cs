@@ -136,6 +136,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Book"",
+                    ""type"": ""Button"",
+                    ""id"": ""2636f83c-99fd-4792-8100-b97ce3bfac29"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -237,6 +246,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b5809a8-3abc-4405-beac-c181b074d82a"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Book"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -250,6 +270,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Keyboard_Sprint = m_Keyboard.FindAction("Sprint", throwIfNotFound: true);
         m_Keyboard_Jump = m_Keyboard.FindAction("Jump", throwIfNotFound: true);
         m_Keyboard_Click = m_Keyboard.FindAction("Click", throwIfNotFound: true);
+        m_Keyboard_Book = m_Keyboard.FindAction("Book", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -335,6 +356,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Keyboard_Sprint;
     private readonly InputAction m_Keyboard_Jump;
     private readonly InputAction m_Keyboard_Click;
+    private readonly InputAction m_Keyboard_Book;
     /// <summary>
     /// Provides access to input actions defined in input action map "Keyboard".
     /// </summary>
@@ -366,6 +388,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Keyboard/Click".
         /// </summary>
         public InputAction @Click => m_Wrapper.m_Keyboard_Click;
+        /// <summary>
+        /// Provides access to the underlying input action "Keyboard/Book".
+        /// </summary>
+        public InputAction @Book => m_Wrapper.m_Keyboard_Book;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -407,6 +433,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
+            @Book.started += instance.OnBook;
+            @Book.performed += instance.OnBook;
+            @Book.canceled += instance.OnBook;
         }
 
         /// <summary>
@@ -433,6 +462,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
+            @Book.started -= instance.OnBook;
+            @Book.performed -= instance.OnBook;
+            @Book.canceled -= instance.OnBook;
         }
 
         /// <summary>
@@ -508,5 +540,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnClick(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Book" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnBook(InputAction.CallbackContext context);
     }
 }
